@@ -22,6 +22,7 @@
 			return currentDate;
 		};		
 	});
+
 	
 	app.service('solarPosition', function($http, $rootScope, calendar){
 		var _this = this;
@@ -127,11 +128,16 @@
 		});
 
 		function checkRitualCurrentDay() {
-			if (moment().isBetween(moment().startOf('day'),appData.sunRiseFallParam.tomorrowSunrise)) {
+
+			// debugger;
+
+			// TODO: Fix calculate between time
+			if (moment().isBetween(moment(moment().startOf('day'),appData.sunRiseFallParam.tomorrowSunrise))) {
 				calendar.setCurrentDate(moment().subtract(1,'day'));
 				$rootScope.$broadcast('forceChangeDate');
 			}
 		}
+
 
 		
 		function sunRiseFallParamChanged () {
