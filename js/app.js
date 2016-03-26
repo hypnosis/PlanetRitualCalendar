@@ -33,7 +33,16 @@
 
 	app.filter('durationTime', function() {
 		return function(ms) {
-			return moment.duration(ms).hours() + ':' + moment.duration(ms).minutes();
+
+			function pad(value) {
+				if(value < 10) {
+					return '0' + value;
+				} else {
+					return value;
+				}
+			}
+
+			return pad(moment.duration(ms).hours()) + ':' + pad(moment.duration(ms).minutes());
 		};
 	});
 
